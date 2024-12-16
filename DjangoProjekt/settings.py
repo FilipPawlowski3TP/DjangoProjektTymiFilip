@@ -31,11 +31,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'users',
+    'meetings',
+    'vacations',
+    'core',
+
+    'crispy_forms',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
 ]
 
 MIDDLEWARE = [
@@ -46,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'DjangoProjekt.urls'
@@ -121,3 +134,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'  # na strone glowna po zalogowaniu (do zmiany mozlwiwe)
+
+# Opcjonalnie: pozwala na rejestrację przez e-mail
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+SITE_ID = 1 #  Sites Framework dla Allauth
